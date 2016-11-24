@@ -6,8 +6,8 @@ def check_ospf_full_adjacencies(dev, neighbor_count):
     ospf_table.get()
     if len(ospf_table) != neighbor_count:
         return False
-    for neigbor in ospf_table:
-        if neigbor["ospf_neighbor_state"] != "Full":
+    for neighbor in ospf_table:
+        if neighbor["ospf_neighbor_state"] != "Full":
             return False
     return True
 

@@ -2,7 +2,7 @@ from jnpr.junos import Device
 from os.path import split, splitext, isfile, join
 from os import listdir
 
-script_dir = split(__file__)[0]
+script_dir = split(__file__)[0] or "."
 for f in listdir(script_dir):
     if isfile(join(script_dir, f)) and f.startswith("tests_") and f.endswith(".py"):
         exec("from %s import *" % splitext(f)[0])
