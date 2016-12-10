@@ -1,3 +1,4 @@
+from __future__ import print_function
 from jnpr.junos import Device
 from os.path import split, splitext, isfile, join
 from os import listdir
@@ -16,7 +17,6 @@ HOSTS = {
 USER = "lab"
 PASSWD = "lab123"
 
-
 if __name__ == "__main__":
 
     tests_success = 0
@@ -25,10 +25,10 @@ if __name__ == "__main__":
     for host in sorted(HOSTS.keys()):
         print("Running tests for %s" % host)
         with Device(host=HOSTS[host], user=USER, passwd=PASSWD, gather_facts=False) as dev:
-            for key in dir():
-                if key.startswith("test_%s_" % host) or key.startswith("test_all_"):
-                    print("    Running %s... " % key, end="")
-                    test_result = locals()[key](dev)
+            for name in dir():
+                if name.startswith("test_%s_" % host) or name.startswith("test_all_"):
+                    print("    Running %s... " % name, end="")
+                    test_result = locals()[name](dev)
                     if test_result:
                         print(" pass")
                         tests_success += 1
@@ -37,6 +37,7 @@ if __name__ == "__main__":
                         tests_fail += 1
 
     print("--------")
-    print("Network test script finished. Successful tests: %s, failed tests: %s" % (tests_success, tests_fail))
+    print("Network test script finished. Successful tests: %s, failed tests: %s" %
+          (tests_success, tests_fail))
     print("All went OK." if tests_fail == 0 else "***WARNING***: There were failed tests!")
 
