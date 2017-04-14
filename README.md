@@ -19,7 +19,9 @@ summary). Alternatively, you might look at graphs that represent different count
 
 ### Solution
 
-The base [script](https://github.com/pklimai/pyez-network-testing/blob/master/pyez-network-testing.py) of the nano framework calls all tests that you create. The actual tests must be placed in other files in the same directory, with names tests_XXX.py. For the example [topology](https://github.com/pklimai/pyez-network-testing/blob/master/TOPOLOGY/example-network-topology.tif) and the set of test scripts contained in repository, the result might be the following:
+The base [script](https://github.com/pklimai/pyez-network-testing/blob/master/pyez-network-testing.py) of the nano framework calls all tests that you create. The actual tests must be placed in other files in the same directory, with names tests_XXX.py. 
+
+For the example [topology](https://github.com/pklimai/pyez-network-testing/blob/master/TOPOLOGY/example-network-topology.tif) and the set of test scripts contained in repository, the result of a test run might be the following:
 
 ```
 $ python pyez-network-testing.py
@@ -53,6 +55,6 @@ Network test script finished. Successful tests: 22, failed tests: 0
 All went OK.
 ```
 
-More details are explained in Chapter 6 of this book, which is free to download for J-net menbers:
+More details are explained in Chapter 6 of this book, which is free to download for J-net members:
 https://www.juniper.net/us/en/training/jnbooks/day-one/networking-technologies-series/cookbook-2017/
 
