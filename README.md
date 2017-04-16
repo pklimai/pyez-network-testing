@@ -15,13 +15,38 @@ scripts or orchestrate off-box, from a central server. Different possibilities l
 It makes sense to start with automating network monitoring, not only because it is very valuable, but because it allows you to feel the automation power while occupying a space in which it’s safer to experiment (when compared to configuration automation).
 
 Typically, to make sure your network is operating normally, you log in to several devices and check the command outputs (e.g., show bgp
-summary). Alternatively, you might look at graphs that represent different counters and values (such as CPU load, interface throughput, etc.). Here, you will see how to do it with Junos PyEZ, a powerful yet simple library for automating Junos-based devices.
+summary). Alternatively, you might look at graphs that represent different counters and values (such as CPU load, interface throughput, etc.). Here, you will see how to do it with scripts. Because we use PyEZ, that will only work for automating Junos-based devices at this time.
 
-### Solution
+### Example solution
 
 The base [script](https://github.com/pklimai/pyez-network-testing/blob/master/pyez-network-testing.py) of the nano framework calls all tests that you create. The actual tests must be placed in other files in the same directory, with names tests_XXX.py. 
 
-For the example [topology](https://github.com/pklimai/pyez-network-testing/blob/master/TOPOLOGY/example-network-topology.tif) and the set of test scripts contained in repository, the result of a test run might be the following:
+Demo scripts use this example topology ([tiff](https://github.com/pklimai/pyez-network-testing/blob/master/TOPOLOGY/example-network-topology.tif)):
+```
+
+        Internet
+          /  \
+         /    \
+        /      \
+       R1======R2
+        \      /
+         \    /
+          \  /
+           R3
+           
+```
+where R1, R2 and R3 run OSPF and BGP (configs also available in the repo for your reference).
+
+The repository contains a set of scripts to test for:
+- Existence of BGP default route on all routers
+- Number of Full OSPF anjacencies on all routers
+- Presense of system alarms
+- Core dumps on all routers
+- Success of ping tests from R3 to ISPs
+- Memory utilization
+and some other stuff.
+
+The result of a test run might be the following:
 
 ```
 $ python pyez-network-testing.py
